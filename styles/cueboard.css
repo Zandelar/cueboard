@@ -1,0 +1,552 @@
+/* ----------------------------------------- */
+/* Cueboard Application                      */
+/* ----------------------------------------- */
+
+.application.cueboard-app .window-content {
+  padding: 0;
+  overflow: hidden;
+}
+
+.cueboard-shell {
+  padding: 16px;
+  color: #2b2418;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.72),
+      transparent 34%
+    ),
+    linear-gradient(
+      135deg,
+      #f3ead8 0%,
+      #dfcfad 100%
+    );
+  border: 1px solid rgba(79, 54, 29, 0.24);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.38);
+}
+
+/* ----------------------------------------- */
+/* Header                                    */
+/* ----------------------------------------- */
+
+.cueboard-header {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 15px;
+  border-radius: 16px;
+  color: #f8ecd3;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(244, 209, 138, 0.16),
+      transparent 36%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(69, 48, 30, 0.96),
+      rgba(34, 25, 17, 0.96)
+    );
+  box-shadow:
+    0 12px 30px rgba(33, 24, 16, 0.22);
+}
+
+.cueboard-header-icon {
+  display: grid;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(244, 209, 138, 0.28);
+  border-radius: 14px;
+  color: #f4d18a;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 19px;
+}
+
+.cueboard-header-copy {
+  min-width: 0;
+}
+
+.cueboard-header h2 {
+  margin: 0;
+  color: #f8ecd3;
+  font-size: 21px;
+  letter-spacing: 0.02em;
+}
+
+.cueboard-header p {
+  margin: 3px 0 0;
+  color: rgba(248, 236, 211, 0.76);
+  font-size: 13px;
+}
+
+/* ----------------------------------------- */
+/* Active Scene Summary                      */
+/* ----------------------------------------- */
+
+.cueboard-summary {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(80, 55, 28, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 250, 238, 0.68);
+}
+
+.cueboard-summary > div {
+  min-width: 0;
+}
+
+.cueboard-summary-label {
+  display: block;
+  margin-bottom: 2px;
+  color: #7a6342;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cueboard-summary strong {
+  display: block;
+  overflow: hidden;
+  color: #2c2116;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cueboard-count {
+  flex: 0 0 auto;
+  padding: 5px 9px;
+  border: 1px solid rgba(126, 94, 42, 0.22);
+  border-radius: 999px;
+  color: #5b4328;
+  background: rgba(126, 94, 42, 0.12);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ----------------------------------------- */
+/* Cue Management                            */
+/* ----------------------------------------- */
+
+.cueboard-manager {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid rgba(80, 55, 28, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 250, 238, 0.58);
+}
+
+.cueboard-manager-copy {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.cueboard-manager-copy strong {
+  flex: 0 0 auto;
+  color: #2c2116;
+  font-size: 12px;
+}
+
+.cueboard-manager-copy span {
+  min-width: 0;
+  color: #786246;
+  font-size: 11px;
+}
+
+.cueboard-picker-row {
+  display: grid;
+  grid-template-columns:
+    44px
+    minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+}
+
+.cueboard-picker-row > label {
+  color: #6d573b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.cueboard-add-controls {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+  gap: 7px;
+}
+
+.cueboard-folder-select,
+.cueboard-scene-select {
+  min-width: 0;
+  width: 100%;
+  height: 32px;
+  margin: 0;
+  padding: 4px 8px;
+  border: 1px solid rgba(76, 52, 28, 0.24);
+  border-radius: 9px;
+  color: #2c2116;
+  background: rgba(255, 252, 244, 0.92);
+}
+
+.cueboard-folder-select:focus,
+.cueboard-scene-select:focus {
+  border-color: rgba(122, 84, 45, 0.68);
+  outline: none;
+  box-shadow:
+    0 0 0 2px rgba(122, 84, 45, 0.12);
+}
+
+.cueboard-folder-select:disabled,
+.cueboard-scene-select:disabled {
+  opacity: 0.56;
+}
+
+.cueboard-shell .cueboard-add-scene {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  height: 32px;
+  margin: 0;
+  padding: 5px 10px;
+  border: 1px solid rgba(92, 58, 25, 0.72);
+  border-radius: 9px;
+  color: #f8ecd3;
+  background:
+    linear-gradient(
+      135deg,
+      #7a542d,
+      #3b2618
+    );
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow:
+    0 5px 12px rgba(45, 29, 17, 0.14);
+  cursor: pointer;
+}
+
+.cueboard-shell
+.cueboard-add-scene:hover:not(:disabled) {
+  background:
+    linear-gradient(
+      135deg,
+      #8a6135,
+      #4a2e1d
+    );
+}
+
+.cueboard-shell .cueboard-add-scene:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ----------------------------------------- */
+/* Cue List                                  */
+/* ----------------------------------------- */
+
+.cueboard-list {
+  display: grid;
+  gap: 10px;
+  max-height: min(60vh, 38rem);
+  margin-top: 12px;
+  padding-right: 4px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+}
+
+.cueboard-cue {
+  display: grid;
+  grid-template-columns:
+    58px
+    minmax(0, 1fr)
+    220px;
+  gap: 12px;
+  align-items: center;
+  min-height: 76px;
+  padding: 11px 12px;
+  border: 1px solid rgba(76, 52, 28, 0.14);
+  border-radius: 15px;
+  background: rgba(255, 252, 244, 0.78);
+  box-shadow:
+    0 6px 18px rgba(55, 39, 22, 0.08);
+}
+
+.cueboard-cue.is-active {
+  border-color: rgba(122, 84, 45, 0.52);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 248, 229, 0.94),
+      rgba(236, 217, 180, 0.92)
+    );
+  box-shadow:
+    0 8px 20px rgba(55, 39, 22, 0.12),
+    inset 3px 0 0 #7a542d;
+}
+
+.cueboard-cue.is-stale {
+  opacity: 0.58;
+  border-style: dashed;
+}
+
+/* ----------------------------------------- */
+/* Scene Thumbnail                           */
+/* ----------------------------------------- */
+
+.cueboard-thumbnail {
+  display: grid;
+  width: 58px;
+  height: 44px;
+  overflow: hidden;
+  place-items: center;
+  border: 1px solid rgba(76, 52, 28, 0.18);
+  border-radius: 11px;
+  color: #8a7655;
+  background: rgba(86, 62, 31, 0.12);
+}
+
+.cueboard-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ----------------------------------------- */
+/* Cue Text                                  */
+/* ----------------------------------------- */
+
+.cueboard-cue-main {
+  min-width: 0;
+}
+
+.cueboard-cue-main h3 {
+  margin: 0;
+  overflow: hidden;
+  color: #2c2116;
+  font-size: 15px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cueboard-cue-main p {
+  margin: 4px 0 0;
+  color: #6d573b;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.cueboard-cue-main small {
+  display: block;
+  margin-top: 3px;
+  overflow: hidden;
+  color: #867154;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------- */
+/* Row Management                            */
+/* ----------------------------------------- */
+
+.cueboard-row-tools {
+  display: flex;
+  gap: 4px;
+  margin-top: 7px;
+}
+
+.cueboard-shell .cueboard-row-tool {
+  display: inline-grid;
+  width: 25px;
+  height: 24px;
+  min-height: 24px;
+  margin: 0;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(76, 52, 28, 0.18);
+  border-radius: 7px;
+  color: #695237;
+  background: rgba(255, 250, 238, 0.66);
+  font-size: 10px;
+  line-height: 1;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.cueboard-shell
+.cueboard-row-tool:hover:not(:disabled) {
+  border-color: rgba(76, 52, 28, 0.38);
+  color: #2c2116;
+  background: rgba(255, 246, 226, 0.96);
+}
+
+.cueboard-shell .cueboard-row-tool:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.cueboard-shell .cueboard-remove {
+  color: #734739;
+}
+
+.cueboard-shell
+.cueboard-remove:hover:not(:disabled) {
+  color: #562d24;
+  border-color: rgba(106, 54, 42, 0.42);
+  background: rgba(132, 73, 55, 0.1);
+}
+
+/* ----------------------------------------- */
+/* Scene Actions                             */
+/* ----------------------------------------- */
+
+.cueboard-actions {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+  gap: 7px;
+  align-items: stretch;
+}
+
+.cueboard-shell .cueboard-action,
+.cueboard-active-badge {
+  min-height: 34px;
+  height: auto;
+  margin: 0;
+  padding: 6px 9px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: normal;
+}
+
+.cueboard-shell .cueboard-action {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(76, 52, 28, 0.2);
+  box-shadow: none;
+  cursor: pointer;
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease,
+    border-color 120ms ease,
+    filter 120ms ease;
+}
+
+.cueboard-shell
+.cueboard-action:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.cueboard-shell .cueboard-action:disabled,
+.cueboard-shell .cueboard-action.is-pending {
+  opacity: 0.52;
+  cursor: default;
+  transform: none;
+}
+
+.cueboard-preload {
+  color: #4a321d;
+  background: rgba(255, 250, 238, 0.76);
+}
+
+.cueboard-preload:hover:not(:disabled) {
+  color: #2b2117;
+  background: rgba(255, 246, 226, 0.94);
+  box-shadow:
+    0 6px 14px rgba(45, 29, 17, 0.14);
+}
+
+.cueboard-shell .cueboard-activate {
+  color: #f8ecd3;
+  border-color: rgba(92, 58, 25, 0.72);
+  background:
+    linear-gradient(
+      135deg,
+      #7a542d,
+      #3b2618
+    );
+  box-shadow:
+    0 6px 16px rgba(45, 29, 17, 0.18);
+}
+
+.cueboard-shell
+.cueboard-activate:hover:not(:disabled) {
+  color: #fff6df;
+  background:
+    linear-gradient(
+      135deg,
+      #8a6135,
+      #4a2e1d
+    );
+  box-shadow:
+    0 8px 18px rgba(45, 29, 17, 0.22);
+}
+
+.cueboard-active-badge {
+  display: inline-flex;
+  gap: 6px;
+  grid-column: 2;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(62, 70, 34, 0.72);
+  color: #f8ecd3;
+  background:
+    linear-gradient(
+      135deg,
+      #5f6b3b,
+      #30351e
+    );
+}
+
+/* ----------------------------------------- */
+/* Empty State                               */
+/* ----------------------------------------- */
+
+.cueboard-empty {
+  padding: 28px 18px;
+  border: 1px dashed rgba(80, 55, 28, 0.24);
+  border-radius: 15px;
+  color: #6d573b;
+  background: rgba(255, 250, 238, 0.52);
+  text-align: center;
+}
+
+.cueboard-empty > i {
+  display: block;
+  margin-bottom: 8px;
+  color: #8a7655;
+  font-size: 24px;
+}
+
+.cueboard-empty strong {
+  display: block;
+  color: #2c2116;
+}
+
+.cueboard-empty p {
+  margin: 5px 0 0;
+  font-size: 12px;
+}

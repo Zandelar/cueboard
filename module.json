@@ -1,0 +1,21 @@
+{
+  "id": "cueboard",
+  "title": "Cueboard",
+  "description": "A lightweight GM scene cue board for Foundry Virtual Tabletop. Prepare Scenes, preload them for connected players, and activate them when the table is ready.",
+  "version": "0.1.0",
+  "authors": [
+    {
+      "name": "Zandelar"
+    }
+  ],
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14.367"
+  },
+  "esmodules": [
+    "scripts/main.js"
+  ],
+  "styles": [
+    "styles/cueboard.css"
+  ]
+}

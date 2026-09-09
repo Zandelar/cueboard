@@ -1,0 +1,246 @@
+<div class="cueboard-shell">
+  <header class="cueboard-header">
+    <div class="cueboard-header-icon">
+      <i class="fa-solid fa-clapperboard"></i>
+    </div>
+
+    <div class="cueboard-header-copy">
+      <h2>Cueboard</h2>
+      <p>
+        Preload the next Scene. Activate it when the table is ready.
+      </p>
+    </div>
+  </header>
+
+  <section class="cueboard-summary">
+    <div>
+      <span class="cueboard-summary-label">
+        Active Scene
+      </span>
+
+      <strong>{{activeSceneName}}</strong>
+    </div>
+
+    <span class="cueboard-count">
+      {{cueCountLabel}}
+    </span>
+  </section>
+
+  <section
+  class="cueboard-manager"
+  aria-label="Add Scene to Cueboard"
+>
+  <div class="cueboard-manager-copy">
+    <strong>Add Scene</strong>
+    <span>
+      Choose a Foundry Scene folder, then select a Scene.
+    </span>
+  </div>
+
+  <div class="cueboard-picker-row">
+    <label for="cueboard-folder-select">
+      Folder
+    </label>
+
+    <select
+      id="cueboard-folder-select"
+      class="cueboard-folder-select"
+      data-cueboard-folder-select
+      aria-label="Scene folder"
+    >
+      {{#each folderOptions}}
+        <option
+          value="{{value}}"
+          {{#if selected}}selected{{/if}}
+        >
+          {{label}}
+        </option>
+      {{/each}}
+    </select>
+  </div>
+
+  <div class="cueboard-picker-row">
+    <label for="cueboard-scene-select">
+      Scene
+    </label>
+
+    <div class="cueboard-add-controls">
+      <select
+        id="cueboard-scene-select"
+        class="cueboard-scene-select"
+        data-cueboard-scene-select
+        aria-label="Scene to add"
+        {{#unless hasAvailableScenes}}disabled{{/unless}}
+      >
+        <option
+          value=""
+          selected
+          disabled
+        >
+          {{sceneSelectPlaceholder}}
+        </option>
+
+        {{#each availableScenes}}
+          <option value="{{sceneId}}">
+            {{name}}
+          </option>
+        {{/each}}
+      </select>
+
+      <button
+        type="button"
+        class="cueboard-add-scene"
+        data-action="addScene"
+        data-cue-management
+        {{#unless hasAvailableScenes}}disabled{{/unless}}
+      >
+        <i class="fa-solid fa-plus"></i>
+        <span>Add</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+  <section
+    class="cueboard-list"
+    aria-label="Cueboard Scenes"
+  >
+    {{#if hasCues}}
+      {{#each cues}}
+        <article
+          class="cueboard-cue{{#if isActive}} is-active{{/if}}{{#if stale}} is-stale{{/if}}"
+          data-scene-id="{{sceneId}}"
+          {{#if isActive}}aria-current="true"{{/if}}
+        >
+          <div class="cueboard-thumbnail">
+            {{#if thumbnail}}
+              <img
+                src="{{thumbnail}}"
+                alt=""
+              >
+            {{else}}
+              <i class="fa-solid fa-image"></i>
+            {{/if}}
+          </div>
+
+          <div class="cueboard-cue-main">
+            <h3>{{name}}</h3>
+
+            <p>
+              {{#if stale}}
+                Scene reference is no longer available.
+              {{else}}
+                {{#if isActive}}
+                  Currently active Scene.
+                {{else}}
+                  {{#if preloadRequested}}
+                    Preload request sent.
+                  {{else}}
+                    Ready for cue.
+                  {{/if}}
+                {{/if}}
+              {{/if}}
+            </p>
+
+            {{#if stale}}
+              <small>{{sceneId}}</small>
+            {{/if}}
+
+            <div
+              class="cueboard-row-tools"
+              aria-label="Cue management"
+            >
+              <button
+                type="button"
+                class="cueboard-row-tool"
+                data-action="moveSceneUp"
+                data-scene-id="{{sceneId}}"
+                data-cue-management
+                data-tooltip="Move Up"
+                aria-label="Move {{name}} up"
+                {{#unless canMoveUp}}disabled{{/unless}}
+              >
+                <i class="fa-solid fa-arrow-up"></i>
+              </button>
+
+              <button
+                type="button"
+                class="cueboard-row-tool"
+                data-action="moveSceneDown"
+                data-scene-id="{{sceneId}}"
+                data-cue-management
+                data-tooltip="Move Down"
+                aria-label="Move {{name}} down"
+                {{#unless canMoveDown}}disabled{{/unless}}
+              >
+                <i class="fa-solid fa-arrow-down"></i>
+              </button>
+
+              <button
+                type="button"
+                class="cueboard-row-tool cueboard-remove"
+                data-action="removeScene"
+                data-scene-id="{{sceneId}}"
+                data-cue-management
+                data-tooltip="Remove from Cueboard"
+                aria-label="Remove {{name}} from Cueboard"
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="cueboard-actions">
+            <button
+              type="button"
+              class="cueboard-action cueboard-preload"
+              data-action="preloadScene"
+              data-scene-id="{{sceneId}}"
+              {{#if stale}}disabled{{/if}}
+            >
+              <i class="fa-solid fa-cloud-arrow-down"></i>
+
+              <span>
+                {{#if preloadRequested}}
+                  Preload Sent
+                {{else}}
+                  Preload
+                {{/if}}
+              </span>
+            </button>
+
+            {{#if isActive}}
+              <div class="cueboard-active-badge">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Active</span>
+              </div>
+            {{else}}
+              <button
+                type="button"
+                class="cueboard-action cueboard-activate"
+                data-action="activateScene"
+                data-scene-id="{{sceneId}}"
+                {{#if stale}}disabled{{/if}}
+              >
+                <i class="fa-solid fa-bolt"></i>
+                <span>Make Active</span>
+              </button>
+            {{/if}}
+          </div>
+        </article>
+      {{/each}}
+    {{else}}
+      <div class="cueboard-empty">
+        <i class="fa-solid fa-clapperboard"></i>
+
+        <strong>
+          No Scenes on Cueboard yet.
+        </strong>
+
+        <p>
+          Choose a world Scene above to begin building the cue list.
+        </p>
+      </div>
+    {{/if}}
+  </section>
+</div>
